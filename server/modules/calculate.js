@@ -1,16 +1,21 @@
 var express = require('express');
 var router = express.Router();
 
-var answer = [];
+var answerArray = [];
 
 router.post('/compute', function( req, res ){
+  console.log((req.body).type);
   console.log("in calculate.js with: ", req.body);
-  answer.push( req.body );
+  answerArray.push( req.body );
   res.send(200);
 });
 
-function routeOperator(){
-  switch(type) {
+console.log(answerArray);
+console.log(req.body);
+
+function routeOperator(answer){
+  console.log(answer);
+  switch(answer.type) {
     case add:
       addObject();
       break;

@@ -13,6 +13,7 @@
     "body-parser": "^1.17.1",
     "expres": "0.0.5",
     "express": "^4.15.2",
-    "jquery": "^3.2.0"
+    "jquery": "^3.2.0",
+    "router-express": "^1.5.2"
   }
 }
