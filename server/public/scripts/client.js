@@ -7,54 +7,37 @@ $(document).ready(function(){
 
   //button event listeners
   $('#addButton').on("click", function(){
-    console.log('Add button clicked');
     type = 'add';
     objectToSendCreator(type);
+    getValue();
     console.log(objectToSend);
   });
 
   $('#subtractButton').on("click", function(){
-    console.log('Subtract button clicked');
     type = 'subtract';
     objectToSendCreator(type);
+    getValue();
     console.log(objectToSend);
   });
 
   $('#multiplyButton').on("click", function(){
-    console.log('Multiply button clicked');
     type = 'multiply';
     objectToSendCreator(type);
+    getValue();
     console.log(objectToSend);
   });
 
   $('#divideButton').on("click", function(){
-    console.log('Divide button clicked');
     type = 'divide';
     objectToSendCreator(type);
+    getValue();
     console.log(objectToSend);
-  });
-
-  $('#computeButton').on("click", function(){
-    console.log('Compute button clicked');
-    //ajax post to server request
-    $.ajax({
-      type: 'POST',
-      url: '/calculate/compute',
-      data: objectToSend,
-      success: function ( response ) {
-        console.log('Back from server with: ', response);
-      }
-    });
-      $('#value1').val('');
-      $('#value2').val('');
-    console.log("sending from client.js: ", objectToSend);
   });
 
   $('#clearButton').on("click", function(){
-    console.log('Clear button clicked');
-    $('#value1').val('');
-    $('#value2').val('');
-    console.log(objectToSend);
+    // $('#value1').val('');
+    // $('#value2').val('');
+    $('.output').text('--');
   });
 
   function objectToSendCreator(type){
@@ -65,5 +48,34 @@ $(document).ready(function(){
     objectToSend.type = type;
   }
 
+  function returnValue(){
+    console.log("displaying value from calculate.js");
+          $.ajax({
+            type: 'GET',
+            url: '/calculate/value',
+            success: function (response){
+              console.log('Back with return value: ', response);
+              $(".output").text(response);
+            }
+          });
+      $('.output').text('');
+    }
+
+    function getValue() {
+     $.ajax({
+          type: 'POST',
+          url: '/calculate/compute',
+          data: objectToSend,
+          success: function (response) {
+            if(response === "OK"){
+            console.log('Back from server with: ', response);
+            }
+          returnValue();
+          }
+        });
+          $('#value1').val('');
+          $('#value2').val('');
+        console.log("sending from client.js: ", objectToSend);
+      }
 
 }); //end document.ready()

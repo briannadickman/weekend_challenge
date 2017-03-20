@@ -28,7 +28,7 @@
 
 ### Server Side:
 [x ] set up server
-[ ] receive object from client-side
+[x ] receive object from client-side
 [ ] convert values from strings
 [ ] route to correct function in receiving using switch(?)
 [x ] create function to handle math

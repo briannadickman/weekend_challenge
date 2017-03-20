@@ -4,7 +4,8 @@ html, body {
 }
 
 header {
-  background-color: limegreen;
+  background-color: black;
+  color: white;
   text-align: center;
   padding: 10px;
   margin-top: 0px;
